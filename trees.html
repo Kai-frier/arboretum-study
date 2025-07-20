@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binary Trees</title>
+  <script>
+    let startTime;
+    window.onload = function () {
+      startTime = Date.now();
+    };
+    function handleSubmit() {
+      const endTime = Date.now();
+      const timeSpent = Math.floor((endTime - startTime) / 1000);
+      document.getElementById("timeInput").value = timeSpent;
+    }
+  </script>
+</head>
+<body>
+
+<h1>Binary Trees</h1>
+<h2>Given Tree:</h2>
+<pre>
+        +---+
+        | 5 |
+        +---+
+       /     \
+   +---+     +---+
+   | 3 |     | 6 |
+   +---+     +---+
+  /     \         \
++---+   +---+     +---+
+| 2 |   | 4 |     | 7 |
++---+   +---+     +---+
+ /               /     \
++---+         +---+   +---+
+| 1 |         | 8 |   | 9 |
++---+         +---+   +---+
+</pre>
+
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfEOGT3dL7vmu5nNQxnrc_TuhYVdFMx4Px-ZnrChSCDMdG2Eg/formResponse" 
+method="POST" 
+target="_blank" 
+onsubmit="handleSubmit()">
+
+  <h3>5. hasPath</h3>
+  <p>Using the tree, determine if a path exists between the nodes:</p>
+
+  <label>hasPath(5, 1):</label><br>
+  <input name="entry.1792004695" type="text" required><br><br>
+
+  <label>hasPath(6, 9):</label><br>
+  <input name="entry.2046396176" type="text" required><br><br>
+
+  <label>hasPath(3, 7):</label><br>
+  <input name="entry.1235786436" type="text" required><br><br>
+
+  <label>hasPath(9, 6):</label><br>
+  <input name="entry.1593584650" type="text" required><br><br>
+
+  <input type="hidden" name="entry.2125918421" id="timeInput" />
+
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
