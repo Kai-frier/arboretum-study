@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Arrays Study</title>
+  <script>
+    let startTime;
+    window.onload = function () {
+      startTime = Date.now();
+    };
+    function handleSubmit() {
+      const endTime = Date.now();
+      const timeSpent = Math.floor((endTime - startTime) / 1000); // seconds
+      document.getElementById("timeInput").value = timeSpent;
+    }
+  </script>
+</head>
+<body>
+
+<h1>Arrays</h1>
+<h2>
+  Given array:
+  <a href="https://ml.rtsh.space/preview?t=Arrays&g=block-beta%0A%20%20%20%20a%5B%225%22%5D%20b%5B%2212%22%5D%20c%5B%227%22%5D%20d%5B%228%22%5D%0A&i=mmd&s=arr&o=tact" target="_blank">
+    array
+  </a>
+</h2>
+
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfEOGT3dL7vmu5nNQxnrc_TuhYVdFMx4Px-ZnrChSCDMdG2Eg/formResponse" 
+method="POST" target="_blank" 
+onsubmit="handleSubmit()">
+
+
+  <label>First rotation result:</label><br>
+  <input name="entry.1632299707" type="text" required><br><br>
+
+  <label>Second rotation result:</label><br>
+  <input name="entry.1772469912" type="text" required><br><br>
+
+  <label>Stretch result:</label><br>
+  <input name="entry.2043832454" type="text" required><br><br>
+
+  <!-- Hidden time tracker -->
+  <input type="hidden" name="entry.1002142425" id="timeInput" />
+
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
