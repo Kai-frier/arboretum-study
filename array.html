@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Arrays Study</title>
   <script>
     let startTime;
-    window.onload = function () {
-      startTime = Date.now();
-    };
+    window.onload = () => { startTime = Date.now(); };
     function handleSubmit() {
       const endTime = Date.now();
-      const timeSpent = Math.floor((endTime - startTime) / 1000); // seconds
+      const timeSpent = Math.floor((endTime - startTime) / 1000);
       document.getElementById("timeInput").value = timeSpent;
     }
   </script>
@@ -25,21 +23,19 @@
   </a>
 </h2>
 
-<form action="https://docs.google.com/forms/d/e/1FAIpQLSfEOGT3dL7vmu5nNQxnrc_TuhYVdFMx4Px-ZnrChSCDMdG2Eg/formResponse" 
-method="POST" target="_blank" 
-onsubmit="handleSubmit()">
+<form action="https://script.google.com/macros/s/AKfycbyAv9Agy6BB79hnbgoOUALikAkjWIMjas-AYrowYmGki42hg7r0a9kZZJUocXMV1qc7PQ/exec"
+      method="POST" target="_blank" onsubmit="handleSubmit()">
 
   <label>First rotation result:</label><br>
-  <input name="entry.1632299707" type="text" required><br><br>
+  <input name="rotation1" type="text" required><br><br>
 
   <label>Second rotation result:</label><br>
-  <input name="entry.1772469912" type="text" required><br><br>
+  <input name="rotation2" type="text" required><br><br>
 
   <label>Stretch result:</label><br>
-  <input name="entry.2043832454" type="text" required><br><br>
+  <input name="stretch" type="text" required><br><br>
 
-  <!-- Hidden time tracker -->
-  <input type="hidden" name="entry.1002142425" id="timeInput" />
+  <input type="hidden" name="timeSpent" id="timeInput">
 
   <button type="submit">Submit</button>
 </form>
