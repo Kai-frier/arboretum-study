@@ -1,44 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Arrays Study</title>
-  <script>
-    let startTime;
-    window.onload = () => { startTime = Date.now(); };
-    function handleSubmit() {
-      const endTime = Date.now();
-      const timeSpent = Math.floor((endTime - startTime) / 1000);
-      document.getElementById("timeInput").value = timeSpent;
-    }
-  </script>
+  <script src="script.js"></script>
 </head>
 <body>
 
 <h1>Arrays</h1>
-<h2>
-  Given array:
+<p>Given array: 
   <a href="https://ml.rtsh.space/preview?t=Arrays&g=block-beta%0A%20%20%20%20a%5B%225%22%5D%20b%5B%2212%22%5D%20c%5B%227%22%5D%20d%5B%228%22%5D%0A&i=mmd&s=arr&o=tact" target="_blank">
-    array
+    View Array Diagram
   </a>
-</h2>
+</p>
 
-<form action="https://script.google.com/macros/s/AKfycbyAv9Agy6BB79hnbgoOUALikAkjWIMjas-AYrowYmGki42hg7r0a9kZZJUocXMV1qc7PQ/exec"
-      method="POST" target="_blank" onsubmit="handleSubmit()">
+<label>First rotation result:</label><br>
+<input id="first" type="text"><br><br>
 
-  <label>First rotation result:</label><br>
-  <input name="rotation1" type="text" required><br><br>
+<label>Second rotation result:</label><br>
+<input id="second" type="text"><br><br>
 
-  <label>Second rotation result:</label><br>
-  <input name="rotation2" type="text" required><br><br>
+<label>Stretch result:</label><br>
+<input id="stretch" type="text"><br><br>
 
-  <label>Stretch result:</label><br>
-  <input name="stretch" type="text" required><br><br>
-
-  <input type="hidden" name="timeSpent" id="timeInput">
-
-  <button type="submit">Submit</button>
-</form>
+<button onclick="submitForm('Arrays')">Submit</button>
 
 </body>
 </html>
