@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Binary Trees Study</title>
-  <script>
-    let startTime;
-    window.onload = () => { startTime = Date.now(); };
-    function handleSubmit() {
-      const endTime = Date.now();
-      const timeSpent = Math.floor((endTime - startTime) / 1000);
-      document.getElementById("timeInput").value = timeSpent;
-    }
-  </script>
+  <script src="script.js"></script>
 </head>
 <body>
 
 <h1>Binary Trees</h1>
-<h2>Given Tree:</h2>
 <pre>
         +---+
         | 5 |
@@ -35,25 +26,21 @@
 +---+         +---+   +---+
 </pre>
 
-<form action="https://script.google.com/macros/s/AKfycbyAv9Agy6BB79hnbgoOUALikAkjWIMjas-AYrowYmGki42hg7r0a9kZZJUocXMV1qc7PQ/exec"
-      method="POST" target="_blank" onsubmit="handleSubmit()">
+<p>Does a path exist between:</p>
 
-  <label>hasPath(5, 1):</label><br>
-  <input name="path1" type="text" required><br><br>
+<label>hasPath(5, 1):</label><br>
+<input id="path1" type="text"><br><br>
 
-  <label>hasPath(6, 9):</label><br>
-  <input name="path2" type="text" required><br><br>
+<label>hasPath(6, 9):</label><br>
+<input id="path2" type="text"><br><br>
 
-  <label>hasPath(3, 7):</label><br>
-  <input name="path3" type="text" required><br><br>
+<label>hasPath(3, 7):</label><br>
+<input id="path3" type="text"><br><br>
 
-  <label>hasPath(9, 6):</label><br>
-  <input name="path4" type="text" required><br><br>
+<label>hasPath(9, 6):</label><br>
+<input id="path4" type="text"><br><br>
 
-  <input type="hidden" name="timeSpent" id="timeInput">
-
-  <button type="submit">Submit</button>
-</form>
+<button onclick="submitForm('Trees')">Submit</button>
 
 </body>
 </html>
