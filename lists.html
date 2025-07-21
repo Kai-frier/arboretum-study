@@ -1,48 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Linked Lists Study</title>
-  <script>
-    let startTime;
-    window.onload = () => { startTime = Date.now(); };
-    function handleSubmit() {
-      const endTime = Date.now();
-      const timeSpent = Math.floor((endTime - startTime) / 1000);
-      document.getElementById("timeInput").value = timeSpent;
-    }
-  </script>
+  <script src="script.js"></script>
 </head>
 <body>
 
 <h1>Linked Lists</h1>
-<h2>Given list: [18, 4, 27, 4, 54, 63, 10]</h2>
+<p>Given list: [18, 4, 27, 4, 54, 63, 10]</p>
 
-<h3>3. frontToBack</h3>
-<p>
-  Move the first node in the 
-  <a href="https://ml.rtsh.space/preview?t=Linked%20List&g=digraph%20ll%20%7B%0A%20%20%20%20node1%5Blabel%3D%22This%22%5D%3B%0A%20%20%20%20node2%5Blabel%3D%22is%22%5D%3B%0A%20%20%20%20node3%5Blabel%3D%22a%22%5D%3B%0A%0A%20%20%20%20node1-%3Enode2%3B%0A%20%20%20%20node2-%3Enode3%3B%0A%7D&i=gv&s=ll&o=mmd" target="_blank">
-    list
-  </a>
-  to the end.
-</p>
+<label>frontToBack result:</label><br>
+<input id="frontToBack" type="text"><br><br>
 
-<h3>4. compress</h3>
-<p>Group every 2 elements and replace them with their sum.</p>
+<label>compress result:</label><br>
+<input id="compress" type="text"><br><br>
 
-<form action="https://script.google.com/macros/s/AKfycbyAv9Agy6BB79hnbgoOUALikAkjWIMjas-AYrowYmGki42hg7r0a9kZZJUocXMV1qc7PQ/exec"
-      method="POST" target="_blank" onsubmit="handleSubmit()">
-
-  <label>frontToBack result:</label><br>
-  <input name="frontToBack" type="text" required><br><br>
-
-  <label>compress result:</label><br>
-  <input name="compress" type="text" required><br><br>
-
-  <input type="hidden" name="timeSpent" id="timeInput">
-
-  <button type="submit">Submit</button>
-</form>
+<button onclick="submitForm('Lists')">Submit</button>
 
 </body>
 </html>
