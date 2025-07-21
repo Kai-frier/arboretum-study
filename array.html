@@ -8,22 +8,28 @@
 <body>
 
 <h1>Arrays</h1>
-<p>Given array: 
+<h2>
+  Given array:
   <a href="https://ml.rtsh.space/preview?t=Arrays&g=block-beta%0A%20%20%20%20a%5B%225%22%5D%20b%5B%2212%22%5D%20c%5B%227%22%5D%20d%5B%228%22%5D%0A&i=mmd&s=arr&o=tact" target="_blank">
-    View Array Diagram
+    array
   </a>
-</p>
+</h2>
 
-<label>First rotation result:</label><br>
-<input id="first" type="text"><br><br>
+<form id="array-form">
+  <label>First rotation result:</label><br>
+  <input name="first" type="text" required><br><br>
 
-<label>Second rotation result:</label><br>
-<input id="second" type="text"><br><br>
+  <label>Second rotation result:</label><br>
+  <input name="second" type="text" required><br><br>
 
-<label>Stretch result:</label><br>
-<input id="stretch" type="text"><br><br>
+  <label>Stretch result:</label><br>
+  <input name="stretch" type="text" required><br><br>
 
-<button onclick="submitForm('Arrays')">Submit</button>
+  <input type="hidden" name="section" value="Arrays">
+  <input type="hidden" name="time" id="timeInput" />
+
+  <button type="submit">Submit</button>
+</form>
 
 </body>
 </html>
