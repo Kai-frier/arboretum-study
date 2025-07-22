@@ -1,46 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linked Lists</title>
-  <script>
-    let startTime;
-    window.onload = function () {
-      startTime = Date.now();
-    };
-    function handleSubmit() {
-      const endTime = Date.now();
-      const timeSpent = Math.floor((endTime - startTime) / 1000);
-      document.getElementById("timeInput").value = timeSpent;
-    }
-  </script>
+  <meta charset="UTF-8">
+  <title>Lists Study</title>
 </head>
 <body>
 
-<h1>Linked Lists</h1>
-<h2>Given list: [18, 4, 27, 4, 54, 63, 10]</h2>
+<h1>Lists</h1>
+<h2>
+  Given list:
+  <a href="https://ml.rtsh.space/preview?t=Lists&g=block-beta%0A%20%20%20%20a%5B%223%22%5D%20b%5B%229%22%5D%20c%5B%225%22%5D%20d%5B%222%22%5D%0A&i=mmd&s=list&o=tact" target="_blank">
+    list
+  </a>
+</h2>
 
-<form action="https://docs.google.com/forms/d/e/1FAIpQLSfEOGT3dL7vmu5nNQxnrc_TuhYVdFMx4Px-ZnrChSCDMdG2Eg/formResponse" 
-method="POST"
-target="_blank" 
-onsubmit="handleSubmit()">
+<form id="list-form">
+  <label>frontToBack result:</label><br>
+  <input id="frontToBack" type="text" required><br><br>
 
-  <h3>3. frontToBack</h3>
-  <p>Move the first node in the 
-     <a href="https://ml.rtsh.space/preview?t=Linked%20List&g=digraph%20ll%20%7B%0A%20%20%20%20node1%5Blabel%3D%22This%22%5D%3B%0A%20%20%20%20node2%5Blabel%3D%22is%22%5D%3B%0A%20%20%20%20node3%5Blabel%3D%22a%22%5D%3B%0A%0A%20%20%20%20node1-%3Enode2%3B%0A%20%20%20%20node2-%3Enode3%3B%0A%7D&i=gv&s=ll&o=mmd" target="_blank">
-        list
-    </a> to the end. What is the result?</p>
-  <input name="entry.1323044315" type="text" required><br><br>
-
-  <h3>4. compress</h3>
-  <p>Group every 2 elements and replace them with their sum. What is the resulting list?</p>
-  <input name="entry.1639343923" type="text" required><br><br>
-
-  <input type="hidden" name="entry.923414720" id="timeInput" />
+  <label>compress result:</label><br>
+  <input id="compress" type="text" required><br><br>
 
   <button type="submit">Submit</button>
 </form>
+
+<script>
+  const startTime = Date.now();
+
+  document.getElementById("list-form").onsubmit = function (event) {
+    event.preventDefault();
+    const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+
+    const formData = {
+      section: "Lists",
+      frontToBack: document.getElementById("frontToBack").value,
+      compress: document.getElementById("compress").value,
+      timeLists: timeSpent
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbzkcuO7Erp8N0VN1OSIRSL2RFX3iWN_dvTKkqjtB10xN7e36BcWNRXloPexwkMBgEEHnw/exec", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(() => {
+      alert("Submitted successfully!");
+    }).catch(err => {
+      alert("Failed to submit.");
+      console.error(err);
+    });
+  };
+</script>
 
 </body>
 </html>
