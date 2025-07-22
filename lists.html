@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Lists Study</title>
-  <script src="script.js"></script>
 </head>
-<body onload="startTimer('Lists')">
+<body>
 
 <h1>Lists</h1>
 <h2>
@@ -15,15 +14,53 @@
   </a>
 </h2>
 
-<form id="list-form" onsubmit="submitForm('Lists'); return false;">
+<form id="list-form">
   <label>frontToBack result:</label><br>
-  <input id="frontToBack" name="frontToBack" type="text" required><br><br>
+  <input id="frontToBack" type="text" required><br><br>
 
   <label>compress result:</label><br>
-  <input id="compress" name="compress" type="text" required><br><br>
+  <input id="compress" type="text" required><br><br>
 
   <button type="submit">Submit</button>
 </form>
+
+<script>
+  const startTime = Date.now();
+
+  document.getElementById("list-form").onsubmit = function (event) {
+    event.preventDefault();
+    const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+
+    const formData = {
+      section: "Lists",
+      first: "",
+      second: "",
+      stretch: "",
+      frontToBack: document.getElementById("frontToBack").value,
+      compress: document.getElementById("compress").value,
+      hasPath1: "",
+      hasPath2: "",
+      hasPath3: "",
+      hasPath4: "",
+      timeArrays: "",
+      timeLists: timeSpent,
+      timeTrees: ""
+    };
+
+    fetch("YOUR_WEB_APP_URL_HERE", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(() => {
+      alert("Submitted successfully!");
+    }).catch(err => {
+      alert("Failed to submit.");
+      console.error(err);
+    });
+  };
+</script>
 
 </body>
 </html>
