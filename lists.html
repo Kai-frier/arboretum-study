@@ -2,21 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Linked Lists Study</title>
+  <title>Lists Study</title>
   <script src="script.js"></script>
 </head>
-<body>
+<body onload="startTimer('Lists')">
 
-<h1>Linked Lists</h1>
-<p>Given list: [18, 4, 27, 4, 54, 63, 10]</p>
+<h1>Lists</h1>
+<h2>
+  Given list:
+  <a href="https://ml.rtsh.space/preview?t=Lists&g=block-beta%0A%20%20%20%20a%5B%223%22%5D%20b%5B%229%22%5D%20c%5B%225%22%5D%20d%5B%222%22%5D%0A&i=mmd&s=list&o=tact" target="_blank">
+    list
+  </a>
+</h2>
 
-<label>frontToBack result:</label><br>
-<input id="frontToBack" type="text"><br><br>
+<form id="list-form" onsubmit="submitForm('Lists'); return false;">
+  <label>frontToBack result:</label><br>
+  <input id="frontToBack" name="frontToBack" type="text" required><br><br>
 
-<label>compress result:</label><br>
-<input id="compress" type="text"><br><br>
+  <label>compress result:</label><br>
+  <input id="compress" name="compress" type="text" required><br><br>
 
-<button onclick="submitForm('Lists')">Submit</button>
+  <button type="submit">Submit</button>
+</form>
 
 </body>
 </html>
