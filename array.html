@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Arrays Study</title>
-  <script src="script.js"></script>
 </head>
-<body onload="startTimer('Arrays')">
+<body>
 
 <h1>Arrays</h1>
 <h2>
@@ -15,7 +14,7 @@
   </a>
 </h2>
 
-<form id="array-form" onsubmit="submitForm('Arrays'); return false;">
+<form id="array-form">
   <label>First rotation result:</label><br>
   <input id="first" name="first" type="text" required><br><br>
 
@@ -27,6 +26,39 @@
 
   <button type="submit">Submit</button>
 </form>
+
+<script>
+  let startTime = Date.now();
+
+  document.getElementById("array-form").onsubmit = function (event) {
+    event.preventDefault();
+
+    const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+
+    const formData = {
+      section: "Arrays",
+      first: document.getElementById("first").value,
+      second: document.getElementById("second").value,
+      stretch: document.getElementById("stretch").value,
+      timeArrays: timeSpent,
+      timeLists: "",
+      timeTrees: ""
+    };
+
+    fetch("YOUR_WEB_APP_URL_HERE", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }).then(() => {
+      alert("Submitted successfully!");
+    }).catch((err) => {
+      alert("Failed to submit.");
+      console.error(err);
+    });
+  };
+</script>
 
 </body>
 </html>
