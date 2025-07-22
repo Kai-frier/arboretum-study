@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Binary Trees Study</title>
+  <title>Trees Study</title>
   <script src="script.js"></script>
 </head>
-<body>
+<body onload="startTimer('Trees')">
 
 <h1>Binary Trees</h1>
+<h2>Given Tree:</h2>
 <pre>
         +---+
         | 5 |
@@ -26,21 +27,21 @@
 +---+         +---+   +---+
 </pre>
 
-<p>Does a path exist between:</p>
+<form id="tree-form" onsubmit="submitForm('Trees'); return false;">
+  <label>hasPath(5, 1):</label><br>
+  <input id="path1" name="path1" type="text" required><br><br>
 
-<label>hasPath(5, 1):</label><br>
-<input id="path1" type="text"><br><br>
+  <label>hasPath(6, 9):</label><br>
+  <input id="path2" name="path2" type="text" required><br><br>
 
-<label>hasPath(6, 9):</label><br>
-<input id="path2" type="text"><br><br>
+  <label>hasPath(3, 7):</label><br>
+  <input id="path3" name="path3" type="text" required><br><br>
 
-<label>hasPath(3, 7):</label><br>
-<input id="path3" type="text"><br><br>
+  <label>hasPath(9, 6):</label><br>
+  <input id="path4" name="path4" type="text" required><br><br>
 
-<label>hasPath(9, 6):</label><br>
-<input id="path4" type="text"><br><br>
-
-<button onclick="submitForm('Trees')">Submit</button>
+  <button type="submit">Submit</button>
+</form>
 
 </body>
 </html>
