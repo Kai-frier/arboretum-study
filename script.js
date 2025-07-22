@@ -5,22 +5,23 @@ let timers = {
 };
 
 let startTime = 0;
+let currentSection = null;
 
 function startTimer(section) {
   startTime = Date.now();
-  timers.currentSection = section;
+  currentSection = section;
 }
 
 function endTimer() {
   const endTime = Date.now();
   const timeSpent = Math.floor((endTime - startTime) / 1000); // in seconds
-  if (timers.currentSection) {
-    timers[timers.currentSection] = timeSpent;
+  if (currentSection && timers.hasOwnProperty(currentSection)) {
+    timers[currentSection] = timeSpent;
   }
 }
 
 function submitForm(sectionId) {
-  endTimer(); // stop the current timer before submitting
+  endTimer(); // stop the timer for the current section
 
   const formData = {
     section: sectionId,
