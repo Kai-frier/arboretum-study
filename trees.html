@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Trees Study</title>
-  <script src="script.js"></script>
 </head>
-<body onload="startTimer('Trees')">
+<body>
 
 <h1>Binary Trees</h1>
 <h2>Given Tree:</h2>
@@ -27,21 +26,59 @@
 +---+         +---+   +---+
 </pre>
 
-<form id="tree-form" onsubmit="submitForm('Trees'); return false;">
+<form id="tree-form">
   <label>hasPath(5, 1):</label><br>
-  <input id="path1" name="path1" type="text" required><br><br>
+  <input id="path1" type="text" required><br><br>
 
   <label>hasPath(6, 9):</label><br>
-  <input id="path2" name="path2" type="text" required><br><br>
+  <input id="path2" type="text" required><br><br>
 
   <label>hasPath(3, 7):</label><br>
-  <input id="path3" name="path3" type="text" required><br><br>
+  <input id="path3" type="text" required><br><br>
 
   <label>hasPath(9, 6):</label><br>
-  <input id="path4" name="path4" type="text" required><br><br>
+  <input id="path4" type="text" required><br><br>
 
   <button type="submit">Submit</button>
 </form>
+
+<script>
+  const startTime = Date.now();
+
+  document.getElementById("tree-form").onsubmit = function (event) {
+    event.preventDefault();
+    const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+
+    const formData = {
+      section: "Trees",
+      first: "",
+      second: "",
+      stretch: "",
+      frontToBack: "",
+      compress: "",
+      hasPath1: document.getElementById("path1").value,
+      hasPath2: document.getElementById("path2").value,
+      hasPath3: document.getElementById("path3").value,
+      hasPath4: document.getElementById("path4").value,
+      timeArrays: "",
+      timeLists: "",
+      timeTrees: timeSpent
+    };
+
+    fetch("YOUR_WEB_APP_URL_HERE", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(() => {
+      alert("Submitted successfully!");
+    }).catch(err => {
+      alert("Failed to submit.");
+      console.error(err);
+    });
+  };
+</script>
 
 </body>
 </html>
