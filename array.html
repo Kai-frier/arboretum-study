@@ -35,15 +35,13 @@
 
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
 
-    const formData = {
-      section: "Arrays",
-      first: document.getElementById("first").value,
-      second: document.getElementById("second").value,
-      stretch: document.getElementById("stretch").value,
-      timeArrays: timeSpent,
-      timeLists: "",
-      timeTrees: ""
-    };
+   const formData = {
+  section: "Arrays",
+  first: document.getElementById("first").value,
+  second: document.getElementById("second").value,
+  stretch: document.getElementById("stretch").value,
+  timeArrays: timeSpent
+};
 
     fetch("https://script.google.com/macros/s/AKfycbzkcuO7Erp8N0VN1OSIRSL2RFX3iWN_dvTKkqjtB10xN7e36BcWNRXloPexwkMBgEEHnw/exec", {
       method: "POST",
