@@ -38,7 +38,7 @@ function submitForm(sectionId) {
     timeTrees: timers.Trees || "",
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbyAv9Agy6BB79hnbgoOUALikAkjWIMjas-AYrowYmGki42hg7r0a9kZZJUocXMV1qc7PQ/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzkcuO7Erp8N0VN1OSIRSL2RFX3iWN_dvTKkqjtB10xN7e36BcWNRXloPexwkMBgEEHnw/exec", {
     method: "POST",
     body: JSON.stringify(formData),
     headers: {
