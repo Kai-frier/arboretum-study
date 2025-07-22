@@ -5,7 +5,7 @@
   <title>Arrays Study</title>
   <script src="script.js"></script>
 </head>
-<body>
+<body onload="startTimer('Arrays')">
 
 <h1>Arrays</h1>
 <h2>
@@ -15,18 +15,15 @@
   </a>
 </h2>
 
-<form id="array-form">
+<form id="array-form" onsubmit="submitForm('Final'); return false;">
   <label>First rotation result:</label><br>
-  <input name="first" type="text" required><br><br>
+  <input id="first" name="first" type="text" required><br><br>
 
   <label>Second rotation result:</label><br>
-  <input name="second" type="text" required><br><br>
+  <input id="second" name="second" type="text" required><br><br>
 
   <label>Stretch result:</label><br>
-  <input name="stretch" type="text" required><br><br>
-
-  <input type="hidden" name="section" value="Arrays">
-  <input type="hidden" name="time" id="timeInput" />
+  <input id="stretch" name="stretch" type="text" required><br><br>
 
   <button type="submit">Submit</button>
 </form>
