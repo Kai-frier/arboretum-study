@@ -1,57 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lists Study</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 </head>
-<body>
+<body class="bg-light">
+  <div class="container mt-5">
+    <div class="card p-4 shadow">
+      <h4 class="text-center mb-4">Lists Section</h4>
+      <form id="lists-form">
+        <div class="form-group">
+          <label>frontToBack result:</label>
+          <input class="form-control" id="frontToBack" required />
+        </div>
+        <div class="form-group">
+          <label>compress result:</label>
+          <input class="form-control" id="compress" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+      </form>
+    </div>
+  </div>
 
-<h1>Lists</h1>
-<h2>
-  Given list:
-  <a href="https://ml.rtsh.space/preview?t=Lists&g=block-beta%0A%20%20%20%20a%5B%223%22%5D%20b%5B%229%22%5D%20c%5B%225%22%5D%20d%5B%222%22%5D%0A&i=mmd&s=list&o=tact" target="_blank">
-    list
-  </a>
-</h2>
+  <script>
+    const startTime = Date.now();
+    document.getElementById("lists-form").onsubmit = function (event) {
+      event.preventDefault();
+      const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+      const formData = new FormData();
+      formData.append("section", "Lists");
+      formData.append("frontToBack", document.getElementById("frontToBack").value);
+      formData.append("compress", document.getElementById("compress").value);
+      formData.append("timeLists", timeSpent);
 
-<form id="list-form">
-  <label>frontToBack result:</label><br>
-  <input id="frontToBack" type="text" required><br><br>
-
-  <label>compress result:</label><br>
-  <input id="compress" type="text" required><br><br>
-
-  <button type="submit">Submit</button>
-</form>
-
-<script>
-  const startTime = Date.now();
-
-  document.getElementById("list-form").onsubmit = function (event) {
-    event.preventDefault();
-    const timeSpent = Math.floor((Date.now() - startTime) / 1000);
-
-    const formData = {
-      section: "Lists",
-      frontToBack: document.getElementById("frontToBack").value,
-      compress: document.getElementById("compress").value,
-      timeLists: timeSpent
+      fetch("https://script.google.com/macros/s/AKfycbyBoyFC3kpSiqFzdYVhDxkxJVmQPaLyxxdY8uNBQ5-SvOlQeqaR35pG7lGcgmlzEHbd/exec", {
+        method: "POST",
+        body: formData,
+      })
+        .then(() => swal("Success!", "Submission saved!", "success"))
+        .catch(() => swal("Error", "Failed to submit. Try again.", "error"));
     };
-
-    fetch("https://script.google.com/macros/s/AKfycbzkcuO7Erp8N0VN1OSIRSL2RFX3iWN_dvTKkqjtB10xN7e36BcWNRXloPexwkMBgEEHnw/exec", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(() => {
-      alert("Submitted successfully!");
-    }).catch(err => {
-      alert("Failed to submit.");
-      console.error(err);
-    });
-  };
-</script>
-
+  </script>
 </body>
 </html>
