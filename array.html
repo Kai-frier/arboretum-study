@@ -1,53 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arrays Study</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
-</head>
-<body class="bg-light">
-  <div class="container mt-5">
-    <div class="card p-4 shadow">
-      <h4 class="text-center mb-4">Arrays Section</h4>
-      <form id="array-form">
-        <div class="form-group">
-          <label>First rotation result:</label>
-          <input class="form-control" id="first" name="first" required />
-        </div>
-        <div class="form-group">
-          <label>Second rotation result:</label>
-          <input class="form-control" id="second" name="second" required />
-        </div>
-        <div class="form-group">
-          <label>Stretch result:</label>
-          <input class="form-control" id="stretch" name="stretch" required />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-      </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays Study</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <style>
+      .form-container {
+        max-width: 700px;
+        margin: auto;
+        margin-top: 50px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <div class="form-container">
+        <h1 class="text-center">Arrays</h1>
+        <h2>
+          Given array to answer the questions:
+          <a
+            href="https://ml.rtsh.space/preview?t=Arrays&g=block-beta%0A%20%20%20%20a%5B%225%22%5D%20b%5B%2212%22%5D%20c%5B%227%22%5D%20d%5B%228%22%5D%0A&i=mmd&s=arr&o=tact"
+            target="_blank"
+          >
+            array
+          </a>
+        </h2>
+
+        <form id="array-form">
+          <h3>1. rotateLeft</h3>
+          <p>
+            Given the array, rotate the values one position to the left. What is
+            the resulting array? Then, rotate it one more time.
+          </p>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="first"
+              placeholder="First rotation"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="second"
+              placeholder="Second rotation"
+              required
+            />
+          </div>
+
+          <h3>2. stretch</h3>
+          <p>
+            Each number in the array is stretched into two parts that add up to the
+            original number. If it’s odd, the first number is one larger than the
+            second.
+          </p>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="stretch"
+              placeholder="Stretched array"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script>
-    const startTime = Date.now();
-    document.getElementById("array-form").onsubmit = function (event) {
-      event.preventDefault();
-      const timeSpent = Math.floor((Date.now() - startTime) / 1000);
-      const formData = new FormData();
-      formData.append("section", "Arrays");
-      formData.append("first", document.getElementById("first").value);
-      formData.append("second", document.getElementById("second").value);
-      formData.append("stretch", document.getElementById("stretch").value);
-      formData.append("timeArrays", timeSpent);
+    <script>
+      const startTime = Date.now();
 
-      fetch("https://script.google.com/macros/s/AKfycbyBoyFC3kpSiqFzdYVhDxkxJVmQPaLyxxdY8uNBQ5-SvOlQeqaR35pG7lGcgmlzEHbd/exec", {
-        method: "POST",
-        body: formData,
-      })
-        .then(() => swal("Success!", "Submission saved!", "success"))
-        .catch(() => swal("Error", "Failed to submit. Try again.", "error"));
-    };
-  </script>
-</body>
+      document.getElementById("array-form").onsubmit = function (event) {
+        event.preventDefault();
+
+        const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+
+        const formData = {
+          section: "Arrays",
+          first: document.getElementById("first").value,
+          second: document.getElementById("second").value,
+          stretch: document.getElementById("stretch").value,
+          timeArrays: timeSpent
+        };
+
+        fetch("https://script.google.com/macros/s/AKfycbyBoyFC3kpSiqFzdYVhDxkxJVmQPaLyxxdY8uNBQ5-SvOlQeqaR35pG7lGcgmlzEHbd/exec", {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then(() => {
+            Swal.fire("Success", "Submitted successfully!", "success");
+          })
+          .catch((err) => {
+            Swal.fire("Error", "Failed to submit. Please try again.", "error");
+            console.error(err);
+          });
+      };
+    </script>
+  </body>
 </html>

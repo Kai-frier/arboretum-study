@@ -1,58 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trees Study</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
-</head>
-<body class="bg-light">
-  <div class="container mt-5">
-    <div class="card p-4 shadow">
-      <h4 class="text-center mb-4">Trees Section</h4>
-      <form id="trees-form">
-        <div class="form-group">
-          <label>hasPath(5, 1):</label>
-          <input class="form-control" id="path1" required />
-        </div>
-        <div class="form-group">
-          <label>hasPath(6, 9):</label>
-          <input class="form-control" id="path2" required />
-        </div>
-        <div class="form-group">
-          <label>hasPath(3, 7):</label>
-          <input class="form-control" id="path3" required />
-        </div>
-        <div class="form-group">
-          <label>hasPath(9, 6):</label>
-          <input class="form-control" id="path4" required />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-      </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trees Study</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <style>
+      .form-container {
+        max-width: 700px;
+        margin: auto;
+        margin-top: 50px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+      pre {
+        font-family: monospace;
+        background: #f8f9fa;
+        padding: 10px;
+        border: 1px solid #dee2e6;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <div class="form-container">
+        <h1 class="text-center">Binary Trees</h1>
+        <h2>Given Tree:</h2>
+        <pre>
+        +---+
+        | 5 |
+        +---+
+       /     \
+   +---+     +---+
+   | 3 |     | 6 |
+   +---+     +---+
+  /     \         \
++---+   +---+     +---+
+| 2 |   | 4 |     | 7 |
++---+   +---+     +---+
+ /               /     \
++---+         +---+   +---+
+| 1 |         | 8 |   | 9 |
++---+         +---+   +---+
+        </pre>
+
+        <form id="tree-form">
+          <h3>5. hasPath</h3>
+          <p>Using the tree structure, determine if a path exists from node A to node B.</p>
+
+          <div class="form-group">
+            <label>hasPath(5, 1):</label>
+            <input type="text" class="form-control" id="path1" required />
+          </div>
+          <div class="form-group">
+            <label>hasPath(6, 9):</label>
+            <input type="text" class="form-control" id="path2" required />
+          </div>
+          <div class="form-group">
+            <label>hasPath(3, 7):</label>
+            <input type="text" class="form-control" id="path3" required />
+          </div>
+          <div class="form-group">
+            <label>hasPath(9, 5):</label>
+            <input type="text" class="form-control" id="path4" required />
+          </div>
+
+          <h3>6. countLeaves</h3>
+          <p>Count all the leaves in the binary tree (nodes without children).</p>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="leafCount"
+              placeholder="Number of leaf nodes"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script>
-    const startTime = Date.now();
-    document.getElementById("trees-form").onsubmit = function (event) {
-      event.preventDefault();
-      const timeSpent = Math.floor((Date.now() - startTime) / 1000);
-      const formData = new FormData();
-      formData.append("section", "Trees");
-      formData.append("hasPath1", document.getElementById("path1").value);
-      formData.append("hasPath2", document.getElementById("path2").value);
-      formData.append("hasPath3", document.getElementById("path3").value);
-      formData.append("hasPath4", document.getElementById("path4").value);
-      formData.append("timeTrees", timeSpent);
+    <script>
+      const startTime = Date.now();
 
-      fetch("https://script.google.com/macros/s/AKfycbyBoyFC3kpSiqFzdYVhDxkxJVmQPaLyxxdY8uNBQ5-SvOlQeqaR35pG7lGcgmlzEHbd/exec", {
-        method: "POST",
-        body: formData,
-      })
-        .then(() => swal("Success!", "Submission saved!", "success"))
-        .catch(() => swal("Error", "Failed to submit. Try again.", "error"));
-    };
-  </script>
-</body>
+      document.getElementById("tree-form").onsubmit = function (event) {
+        event.preventDefault();
+        const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+
+        const formData = {
+          section: "Trees",
+          hasPath1: document.getElementById("path1").value,
+          hasPath2: document.getElementById("path2").value,
+          hasPath3: document.getElementById("path3").value,
+          hasPath4: document.getElementById("path4").value,
+          leafCount: document.getElementById("leafCount").value,
+          timeTrees: timeSpent
+        };
+
+        fetch("https://script.google.com/macros/s/AKfycbyBoyFC3kpSiqFzdYVhDxkxJVmQPaLyxxdY8uNBQ5-SvOlQeqaR35pG7lGcgmlzEHbd/exec", {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+          .then(() => {
+            Swal.fire("Success", "Submitted successfully!", "success");
+          })
+          .catch(err => {
+            Swal.fire("Error", "Failed to submit. Please try again.", "error");
+            console.error(err);
+          });
+      };
+    </script>
+  </body>
 </html>
