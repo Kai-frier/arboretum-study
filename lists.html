@@ -2,17 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lists Study</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
   <style>
     .form-container {
       max-width: 700px;
-      margin: 50px auto;
+      margin: auto;
+      margin-top: 50px;
       padding: 20px;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
     }
   </style>
 </head>
@@ -20,18 +24,23 @@
   <div class="container">
     <div class="form-container">
       <h1 class="text-center">Linked Lists</h1>
-      <h2>Given list:
+      <h2>
+        Given list:
         <a href="https://ml.rtsh.space/preview?t=Lists&g=block-beta%0A%20%20%20%20a%5B%223%22%5D%20b%5B%229%22%5D%20c%5B%225%22%5D%20d%5B%222%22%5D%0A&i=mmd&s=list&o=tact" target="_blank">list</a>
       </h2>
 
       <form id="list-form">
         <h3>3. frontToBack</h3>
-        <p>Move the first node to the end. What’s the resulting list?</p>
-        <input class="form-control mb-3" id="frontToBack" placeholder="Resulting list" required />
+        <p>Move the first node in the list to the end. What is the result after doing this once?</p>
+        <div class="form-group">
+          <input type="text" class="form-control" id="frontToBack" placeholder="Result after moving first node to end" required />
+        </div>
 
         <h3>4. compress</h3>
-        <p>Group every 2 elements, replace with sum. What’s the resulting list?</p>
-        <input class="form-control mb-3" id="compress" placeholder="Compressed list" required />
+        <p>Group every 2 elements and replace them with their sum. What is the resulting list after compression?</p>
+        <div class="form-group">
+          <input type="text" class="form-control" id="compress" placeholder="Compressed list result" required />
+        </div>
 
         <button type="submit" class="btn btn-primary btn-block">Submit</button>
       </form>
@@ -40,26 +49,23 @@
 
   <script>
     const startTime = Date.now();
-    document.getElementById("list-form").onsubmit = function (e) {
-      e.preventDefault();
+
+    document.getElementById("list-form").onsubmit = function (event) {
+      event.preventDefault();
       const timeSpent = Math.floor((Date.now() - startTime) / 1000);
-      const formData = {
-        section: "Lists",
-        frontToBack: document.getElementById("frontToBack").value,
-        compress: document.getElementById("compress").value,
-        timeLists: timeSpent
-      };
+
+      const formData = new FormData();
+      formData.append("section", "Lists");
+      formData.append("frontToBack", document.getElementById("frontToBack").value);
+      formData.append("compress", document.getElementById("compress").value);
+      formData.append("timeLists", timeSpent);
 
       fetch("https://script.google.com/macros/s/AKfycbyBoyFC3kpSiqFzdYVhDxkxJVmQPaLyxxdY8uNBQ5-SvOlQeqaR35pG7lGcgmlzEHbd/exec", {
         method: "POST",
-        body: JSON.stringify(formData),
-        headers: { "Content-Type": "application/json" }
+        body: formData,
       })
-      .then(() => Swal.fire("Success", "Submitted successfully!", "success"))
-      .catch((err) => {
-        Swal.fire("Error", "Submission failed.", "error");
-        console.error(err);
-      });
+        .then(() => Swal.fire("Success", "Submitted successfully!", "success"))
+        .catch((err) => Swal.fire("Error", "Failed to submit. Please try again.", "error"));
     };
   </script>
 </body>
