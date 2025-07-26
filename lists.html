@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lists Study</title>
+  <title>Linked Lists</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     .form-container {
       max-width: 700px;
@@ -24,24 +21,23 @@
   <div class="container">
     <div class="form-container">
       <h1 class="text-center">Linked Lists</h1>
-      <h2>
+      <p>
         Given list:
-        <a href="https://ml.rtsh.space/preview?t=Lists&g=block-beta%0A%20%20%20%20a%5B%223%22%5D%20b%5B%229%22%5D%20c%5B%225%22%5D%20d%5B%222%22%5D%0A&i=mmd&s=list&o=tact" target="_blank">list</a>
-      </h2>
-
-      <form id="list-form">
-        <h3>3. frontToBack</h3>
-        <p>Move the first node in the list to the end. What is the result after doing this once?</p>
+        <a href="https://ml.rtsh.space/preview?t=Linked%20List&g=list%20A(18)%20B(4)%20C(27)%20D(9)%20E(54)%20F(5)%20G(63)%20H(10)&i=mmd&s=ll&o=tact" target="_blank">
+          [18, 4, 27, 9, 54, 5, 63, 10]
+        </a>
+      </p>
+      <form id="lists-form">
         <div class="form-group">
-          <input type="text" class="form-control" id="frontToBack" placeholder="Result after moving first node to end" required />
+          <label for="frontToBack">3. frontToBack</label>
+          <p>Move the first node in the list to the end. What is the result?</p>
+          <input type="text" class="form-control" id="frontToBack" required />
         </div>
-
-        <h3>4. compress</h3>
-        <p>Group every 2 elements and replace them with their sum. What is the resulting list after compression?</p>
         <div class="form-group">
-          <input type="text" class="form-control" id="compress" placeholder="Compressed list result" required />
+          <label for="compress">4. compress</label>
+          <p>Group every 2 elements and replace them with their sum.</p>
+          <input type="text" class="form-control" id="compress" required />
         </div>
-
         <button type="submit" class="btn btn-primary btn-block">Submit</button>
       </form>
     </div>
@@ -49,11 +45,9 @@
 
   <script>
     const startTime = Date.now();
-
-    document.getElementById("list-form").onsubmit = function (event) {
+    document.getElementById("lists-form").onsubmit = function (event) {
       event.preventDefault();
       const timeSpent = Math.floor((Date.now() - startTime) / 1000);
-
       const formData = new FormData();
       formData.append("section", "Lists");
       formData.append("frontToBack", document.getElementById("frontToBack").value);
@@ -62,10 +56,14 @@
 
       fetch("https://script.google.com/macros/s/AKfycbyBoyFC3kpSiqFzdYVhDxkxJVmQPaLyxxdY8uNBQ5-SvOlQeqaR35pG7lGcgmlzEHbd/exec", {
         method: "POST",
-        body: formData,
+        body: formData
       })
-        .then(() => Swal.fire("Success", "Submitted successfully!", "success"))
-        .catch((err) => Swal.fire("Error", "Failed to submit. Please try again.", "error"));
+      .then(() => {
+        Swal.fire("Success", "Submitted successfully!", "success");
+      })
+      .catch(() => {
+        Swal.fire("Error", "Failed to submit. Please try again.", "error");
+      });
     };
   </script>
 </body>
