@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linked Lists</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linked Lists Study</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     .form-container {
@@ -21,23 +24,27 @@
   <div class="container">
     <div class="form-container">
       <h1 class="text-center">Linked Lists</h1>
-      <p>
-        Given list:
-        <a href="https://ml.rtsh.space/preview?t=Linked%20List&g=list%20A(18)%20B(4)%20C(27)%20D(9)%20E(54)%20F(5)%20G(63)%20H(10)&i=mmd&s=ll&o=tact" target="_blank">
-          [18, 4, 27, 9, 54, 5, 63, 10]
+      <h2>
+        Given list: [18, 4, 27, 9, 54, 5, 63, 10]
+        <br/>
+        <a href="https://ml.rtsh.space/preview?t=Linked%20Lists&g=block-beta%0A18%0A4%0A27%0A9%0A54%0A5%0A63%0A10&i=mmd&s=list&o=tact" target="_blank">
+          View Diagram
         </a>
-      </p>
+      </h2>
+
       <form id="lists-form">
+        <h3>3. frontToBack</h3>
+        <p>Move the first node in the list to the end. What is the result?</p>
         <div class="form-group">
-          <label for="frontToBack">3. frontToBack</label>
-          <p>Move the first node in the list to the end. What is the result?</p>
-          <input type="text" class="form-control" id="frontToBack" required />
+          <input type="text" class="form-control" id="frontToBack" placeholder="Resulting list" required />
         </div>
+
+        <h3>4. compress</h3>
+        <p>Group every 2 elements and replace them with their sum. What is the result?</p>
         <div class="form-group">
-          <label for="compress">4. compress</label>
-          <p>Group every 2 elements and replace them with their sum.</p>
-          <input type="text" class="form-control" id="compress" required />
+          <input type="text" class="form-control" id="compress" placeholder="Compressed list" required />
         </div>
+
         <button type="submit" class="btn btn-primary btn-block">Submit</button>
       </form>
     </div>
@@ -45,8 +52,10 @@
 
   <script>
     const startTime = Date.now();
+
     document.getElementById("lists-form").onsubmit = function (event) {
       event.preventDefault();
+
       const timeSpent = Math.floor((Date.now() - startTime) / 1000);
       const formData = new FormData();
       formData.append("section", "Lists");
@@ -58,11 +67,17 @@
         method: "POST",
         body: formData
       })
-      .then(() => {
-        Swal.fire("Success", "Submitted successfully!", "success");
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          Swal.fire("Success", "Submitted successfully!", "success");
+        } else {
+          Swal.fire("Error", data.message || "Submission failed", "error");
+        }
       })
-      .catch(() => {
-        Swal.fire("Error", "Failed to submit. Please try again.", "error");
+      .catch(err => {
+        Swal.fire("Error", "Submission failed", "error");
+        console.error(err);
       });
     };
   </script>

@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Binary Trees</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Binary Trees Study</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     .form-container {
@@ -14,7 +17,12 @@
       padding: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       background-color: #fff;
-      white-space: pre-wrap;
+    }
+    pre {
+      font-family: monospace;
+      background-color: #f8f9fa;
+      padding: 10px;
+      border-radius: 4px;
     }
   </style>
 </head>
@@ -22,6 +30,7 @@
   <div class="container">
     <div class="form-container">
       <h1 class="text-center">Binary Trees</h1>
+
       <h2>Given Tree:</h2>
       <pre>
         +---+
@@ -42,19 +51,29 @@
       </pre>
 
       <form id="trees-form">
+        <h3>5. hasPath</h3>
+        <p>Using the tree structure, determine if a path exists from node A to node B.</p>
         <div class="form-group">
-          <label>5. hasPath</label>
-          <p>Determine if a path exists between the following node pairs:</p>
-          <input class="form-control mb-2" id="hasPath1" placeholder="hasPath(5,1)" required />
-          <input class="form-control mb-2" id="hasPath2" placeholder="hasPath(6,9)" required />
-          <input class="form-control mb-2" id="hasPath3" placeholder="hasPath(3,7)" required />
-          <input class="form-control mb-3" id="hasPath4" placeholder="hasPath(9,5)" required />
+          <label>hasPath(5, 1):</label>
+          <input type="text" class="form-control" id="hasPath1" required />
+        </div>
+        <div class="form-group">
+          <label>hasPath(6, 9):</label>
+          <input type="text" class="form-control" id="hasPath2" required />
+        </div>
+        <div class="form-group">
+          <label>hasPath(3, 7):</label>
+          <input type="text" class="form-control" id="hasPath3" required />
+        </div>
+        <div class="form-group">
+          <label>hasPath(9, 5):</label>
+          <input type="text" class="form-control" id="hasPath4" required />
         </div>
 
+        <h3>6. countLeaves</h3>
+        <p>Count all the leaves in the binary tree (nodes without children).</p>
         <div class="form-group">
-          <label for="leafCount">6. countLeaves</label>
-          <p>Count all the leaves in the binary tree.</p>
-          <input type="text" class="form-control" id="leafCount" required />
+          <input type="text" class="form-control" id="leafCount" placeholder="Number of leaves" required />
         </div>
 
         <button type="submit" class="btn btn-primary btn-block">Submit</button>
@@ -64,8 +83,10 @@
 
   <script>
     const startTime = Date.now();
+
     document.getElementById("trees-form").onsubmit = function (event) {
       event.preventDefault();
+
       const timeSpent = Math.floor((Date.now() - startTime) / 1000);
       const formData = new FormData();
       formData.append("section", "Trees");
@@ -80,11 +101,17 @@
         method: "POST",
         body: formData
       })
-      .then(() => {
-        Swal.fire("Success", "Submitted successfully!", "success");
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          Swal.fire("Success", "Submitted successfully!", "success");
+        } else {
+          Swal.fire("Error", data.message || "Submission failed", "error");
+        }
       })
-      .catch(() => {
-        Swal.fire("Error", "Failed to submit. Please try again.", "error");
+      .catch(err => {
+        Swal.fire("Error", "Submission failed", "error");
+        console.error(err);
       });
     };
   </script>
